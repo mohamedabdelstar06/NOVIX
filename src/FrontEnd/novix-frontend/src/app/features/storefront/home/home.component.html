@@ -1,0 +1,55 @@
+<div class="landing-container">
+    <div class="hero-section">
+        <h1>Essential NOVIX</h1>
+        <p>Pick a category to filter your products</p>
+        
+        <div class="filter-pills">
+            <div class="pill" 
+                 *ngFor="let cat of categories" 
+                 [class.active]="selectedCategory === cat.value"
+                 (click)="filterByCategory(cat)">
+                <i [class]="cat.icon"></i>
+                <span>{{ cat.label }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-header">
+        <h2>Top Products</h2>
+        <a class="see-all">See all</a>
+    </div>
+
+    <div class="product-grid">
+        <ng-container *ngIf="loading">
+            <div class="product-card" *ngFor="let i of [1,2,3,4,5,6]">
+                <div style="height: 220px; background: #e2e8f0; animation: pulse 1.5s infinite;"></div>
+                <div class="product-details">
+                    <div style="height: 1.1rem; background: #e2e8f0; margin-bottom: 0.5rem; width: 80%;"></div>
+                    <div style="height: 0.9rem; background: #e2e8f0; margin-bottom: 0.5rem; width: 60%;"></div>
+                    <div style="height: 1.25rem; background: #e2e8f0; width: 40%;"></div>
+                </div>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="!loading">
+            <div class="product-card" *ngFor="let product of products">
+                <div class="favorite-btn">
+                    <i class="pi pi-heart"></i>
+                </div>
+                <!-- Since backend might not have images yet, we use a placeholder or the mock image -->
+                <img [src]="product.imageUrl || 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=800'" [alt]="product.name" class="product-image" />
+                <div class="product-details">
+                    <h3 class="product-title">{{ product.name }}</h3>
+                    <div class="rating-row">
+                        <span class="rating-score">{{ product.rating || '4.5' }}</span>
+                        <!-- Mock stars -->
+                        <span style="color: #10b981;">●●●●●</span>
+                        <span class="reviews-count">({{ product.reviews || '1,204' }})</span>
+                    </div>
+                    <div class="product-category">{{ product.categoryName }}, {{ product.brandName }}</div>
+                    <div class="product-price">{{ product.basePrice | currency }}</div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

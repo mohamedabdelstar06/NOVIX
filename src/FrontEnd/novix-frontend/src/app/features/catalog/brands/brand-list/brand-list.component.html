@@ -1,0 +1,67 @@
+<p-toast></p-toast>
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
+<div class="card p-4">
+    <div class="flex justify-content-between align-items-center mb-4">
+        <h2 class="m-0 text-xl font-bold">Manage Brands</h2>
+        <p-button label="New" icon="pi pi-plus" (onClick)="openNew()" styleClass="p-button-primary"></p-button>
+    </div>
+
+    <p-table [value]="brands" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowHover]="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="description">Description <p-sortIcon field="description"></p-sortIcon></th>
+                <th>Logo</th>
+                <th>Action</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-brand>
+            <tr>
+                <td>{{brand.name}}</td>
+                <td>{{brand.description}}</td>
+                <td><img [src]="brand.logoUrl" *ngIf="brand.logoUrl" alt="{{brand.name}}" width="50" class="shadow-2 border-round"/></td>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-text mr-2" (click)="editBrand(brand)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-text p-button-danger" (click)="deleteBrand(brand)"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-dialog [(visible)]="brandDialog" [style]="{width: '450px'}" header="Brand Details" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="field mb-3">
+            <label for="name" class="font-semibold block mb-2">Name</label>
+            <input type="text" pInputText id="name" [(ngModel)]="brand.name" required autofocus />
+            <small class="p-error block mt-1" *ngIf="submitted && !brand.name">Name is required.</small>
+        </div>
+        <div class="field mb-3">
+            <label for="description" class="font-semibold block mb-2">Description</label>
+            <textarea id="description" class="p-inputtext p-component w-full" [(ngModel)]="brand.description" required rows="3" cols="20"></textarea>
+        </div>
+        <div class="field mb-3">
+            <label for="logoUrl" class="font-semibold block mb-2">Logo URL</label>
+            <input type="text" pInputText id="logoUrl" [(ngModel)]="brand.logoUrl" />
+        </div>
+
+        <div class="field mt-3">
+            <label class="block mb-2">Brand Logo</label>
+            <label for="logo" class="p-button p-component p-button-outlined cursor-pointer inline-flex align-items-center gap-2 w-full justify-content-center">
+                <i class="pi pi-upload"></i>
+                <span class="p-button-label">Upload Logo</span>
+            </label>
+            <input type="file" id="logo" class="hidden" (change)="onLogoUpload($event)" accept="image/*">
+            <div *ngIf="brand.logoUrl" class="mt-3 text-center">
+                <img [src]="brand.logoUrl" alt="Brand Logo" class="shadow-2 border-round" style="max-width: 120px; height: auto;">
+            </div>
+        </div>
+    </ng-template>
+    
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text p-button-secondary" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-primary" (click)="saveBrand()"></button>
+    </ng-template>
+</p-dialog>

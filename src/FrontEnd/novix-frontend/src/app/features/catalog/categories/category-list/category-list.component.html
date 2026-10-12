@@ -1,0 +1,49 @@
+<p-toast></p-toast>
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
+<div class="card p-4">
+    <div class="flex justify-content-between align-items-center mb-4">
+        <h2 class="m-0 text-xl font-bold">Manage Categories</h2>
+        <p-button label="New" icon="pi pi-plus" (onClick)="openNew()" styleClass="p-button-primary"></p-button>
+    </div>
+
+    <p-table [value]="categories" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowHover]="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="description">Description <p-sortIcon field="description"></p-sortIcon></th>
+                <th>Action</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-category>
+            <tr>
+                <td>{{category.name}}</td>
+                <td>{{category.description}}</td>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-text mr-2" (click)="editCategory(category)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-text p-button-danger" (click)="deleteCategory(category)"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-dialog [(visible)]="categoryDialog" [style]="{width: '450px'}" header="Category Details" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="field mb-3">
+            <label for="name" class="font-semibold block mb-2">Name</label>
+            <input type="text" pInputText id="name" [(ngModel)]="category.name" required autofocus />
+            <small class="p-error block mt-1" *ngIf="submitted && !category.name">Name is required.</small>
+        </div>
+        <div class="field mb-3">
+            <label for="description" class="font-semibold block mb-2">Description</label>
+            <textarea id="description" class="p-inputtext p-component w-full" [(ngModel)]="category.description" required rows="3" cols="20"></textarea>
+        </div>
+    </ng-template>
+    
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text p-button-secondary" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-primary" (click)="saveCategory()"></button>
+    </ng-template>
+</p-dialog>

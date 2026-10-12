@@ -1,0 +1,30 @@
+<div class="auth-form">
+    <form (ngSubmit)="login()" #loginForm="ngForm">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" type="text" pInputText class="input-field" [(ngModel)]="credentials.email" name="email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <p-password id="password" [(ngModel)]="credentials.password" name="password" [toggleMask]="true" styleClass="input-field" [inputStyle]="{'width':'100%'}" required [feedback]="false"></p-password>
+        </div>
+
+        <div class="form-actions">
+            <a class="forgot-link">Forgot password?</a>
+        </div>
+
+        <button pButton label="Sign In" icon="pi pi-user" class="submit-btn" type="submit" [disabled]="loginForm.invalid || isLoading" [loading]="isLoading"></button>
+
+        <div class="divider">
+            <span>OR</span>
+        </div>
+
+        <button pButton label="Sign In with Google" icon="pi pi-google" class="google-btn p-button-outlined p-button-secondary" type="button" (click)="googleLogin()" [loading]="isGoogleLoading"></button>
+
+        <div class="footer">
+            <span>Don't have an account?</span>
+            <a routerLink="/auth/register">Create today!</a>
+        </div>
+    </form>
+</div>

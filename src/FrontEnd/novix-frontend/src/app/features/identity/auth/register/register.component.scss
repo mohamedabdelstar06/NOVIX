@@ -1,0 +1,71 @@
+.auth-form {
+    .form-row {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        
+        .form-col {
+            flex: 1;
+        }
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+        
+        label {
+            display: block;
+            color: var(--text-color);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .input-field {
+            width: 100%;
+        }
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
+
+    .divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+        
+        span {
+            color: var(--text-color-secondary);
+            font-weight: 500;
+        }
+    }
+
+    .google-btn {
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 1.25rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .footer {
+        text-align: center;
+        
+        span {
+            color: var(--text-color-secondary);
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        a {
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--primary-color);
+            margin-left: 0.5rem;
+            cursor: pointer;
+        }
+    }
+}

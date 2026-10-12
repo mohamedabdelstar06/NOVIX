@@ -1,0 +1,133 @@
+.customer-layout-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--surface-ground);
+
+    .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 2rem;
+        background-color: var(--surface-card);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+
+        .brand-logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            
+            i {
+                color: var(--primary-color);
+                font-size: 2rem;
+            }
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 2rem;
+            
+            .p-inputgroup {
+                border-radius: 999px;
+                overflow: hidden;
+                border: 1px solid var(--border-color);
+                
+                input {
+                    border: none;
+                    box-shadow: none;
+                }
+                .p-inputgroup-addon {
+                    background: transparent;
+                    border: none;
+                }
+            }
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+
+            .nav-link {
+                color: var(--text-color);
+                text-decoration: none;
+                font-weight: 500;
+                cursor: pointer;
+                transition: color 0.2s;
+
+                &:hover {
+                    color: var(--primary-light);
+                }
+            }
+            
+            .nav-icon {
+                font-size: 1.25rem;
+                color: var(--text-color);
+                cursor: pointer;
+                
+                &:hover {
+                    color: var(--primary-light);
+                }
+            }
+        }
+    }
+
+    .main-content {
+        flex: 1;
+    }
+
+    .footer {
+        background-color: var(--text-color);
+        color: var(--surface-ground);
+        padding: 3rem 2rem;
+        margin-top: auto;
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            
+            .footer-col {
+                h4 {
+                    font-size: 1.25rem;
+                    margin-bottom: 1rem;
+                    color: white;
+                }
+                
+                ul {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                    
+                    li {
+                        margin-bottom: 0.5rem;
+                        color: #94a3b8;
+                        cursor: pointer;
+                        
+                        &:hover {
+                            color: var(--primary-light);
+                        }
+                    }
+                }
+            }
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+        }
+    }
+}

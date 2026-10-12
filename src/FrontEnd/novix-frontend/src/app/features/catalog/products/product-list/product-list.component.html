@@ -1,0 +1,44 @@
+<div class="product-list-container">
+    <div class="header-section">
+        <h2>Products</h2>
+        <button pButton icon="pi pi-plus" label="New Product" routerLink="/products/new" class="p-button-primary"></button>
+    </div>
+
+    <!-- Added basic pagination properties as requested: [paginator]="true" [rows]="10" [totalRecords]="totalRecords" -->
+    <p-table [value]="products" [tableStyle]="{ 'min-width': '50rem' }" styleClass="p-datatable-sm p-datatable-striped"
+             [paginator]="true" [rows]="10" [totalRecords]="totalRecords" [loading]="loading">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Brand</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.categoryName }}</td>
+                <td>{{ product.brandName }}</td>
+                <td>{{ product.basePrice | currency }}</td>
+                <td>
+                    <span class="status-badge" [ngClass]="product.isPublished ? 'published' : 'draft'">
+                        {{ product.isPublished ? 'Published' : 'Draft' }}
+                    </span>
+                </td>
+                <td class="text-center">
+                    <button pButton icon="pi pi-ellipsis-v" class="p-button-rounded p-button-text" (click)="selectedProduct = product; menu.toggle($event)"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="6" class="text-center p-4">No products found.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-menu #menu [model]="menuItems" [popup]="true"></p-menu>
