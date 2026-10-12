@@ -1,0 +1,24 @@
+## Visual Studio
+.vs/
+*.user
+*.userosscache
+*.suo
+*.userprefs
+
+## Build Results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Bb]in/
+[Oo]bj/
+
+## Node & Angular
+node_modules/
+dist/
+.angular/
+npm-debug.log*
+
+## IDE
+.idea/
+.vscode/

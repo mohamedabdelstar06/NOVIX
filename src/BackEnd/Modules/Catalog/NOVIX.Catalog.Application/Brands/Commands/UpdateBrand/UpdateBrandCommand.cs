@@ -1,0 +1,15 @@
+using MediatR;
+using System;
+
+namespace NOVIX.Catalog.Application.Brands.Commands.UpdateBrand
+{
+    public class UpdateBrandCommand : IRequest<bool>
+    {
+        public Guid Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public string LogoUrl { get; set; } = string.Empty;
+        
+        public Microsoft.AspNetCore.Http.IFormFile? LogoFile { get; set; }
+    }
+}

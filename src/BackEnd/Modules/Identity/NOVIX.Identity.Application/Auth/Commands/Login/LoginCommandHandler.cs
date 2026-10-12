@@ -1,0 +1,28 @@
+using MediatR;
+using NOVIX.Identity.Application.Interfaces;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace NOVIX.Identity.Application.Auth.Commands.Login
+{
+    public class LoginCommandHandler : IRequestHandler<LoginCommand, LoginResponseDto>
+    {
+        private readonly IIdentityService _identityService;
+
+        public LoginCommandHandler(IIdentityService identityService)
+        {
+            _identityService = identityService;
+        }
+
+        public async Task<LoginResponseDto> Handle(LoginCommand request, CancellationToken cancellationToken)
+        {
+            var result = await _identityService.LoginAsync(request.Email, request.Password);
+            return new LoginResponseDto
+            {
+                IsSuccess = result.IsSuccess,
+                Token = result.Token,
+                ErrorMessage = result.ErrorMessage
+            };
+        }
+    }
+}

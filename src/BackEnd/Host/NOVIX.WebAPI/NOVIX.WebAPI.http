@@ -1,0 +1,6 @@
+@NOVIX.WebAPI_HostAddress = http://localhost:5083
+
+GET {{NOVIX.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

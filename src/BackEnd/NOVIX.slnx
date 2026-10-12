@@ -1,0 +1,21 @@
+<Solution>
+  <Folder Name="/Host/">
+    <Project Path="Host/NOVIX.WebAPI/NOVIX.WebAPI.csproj" />
+  </Folder>
+  <Folder Name="/Modules/" />
+  <Folder Name="/Modules/Catalog/">
+    <Project Path="Modules/Catalog/NOVIX.Catalog.Application/NOVIX.Catalog.Application.csproj" />
+    <Project Path="Modules/Catalog/NOVIX.Catalog.Domain/NOVIX.Catalog.Domain.csproj" />
+    <Project Path="Modules/Catalog/NOVIX.Catalog.Infrastructure/NOVIX.Catalog.Infrastructure.csproj" />
+    <Project Path="Modules/Catalog/NOVIX.Catalog.Persistence/NOVIX.Catalog.Persistence.csproj" />
+  </Folder>
+  <Folder Name="/Modules/Identity/">
+    <Project Path="Modules/Identity/NOVIX.Identity.Application/NOVIX.Identity.Application.csproj" />
+    <Project Path="Modules/Identity/NOVIX.Identity.Domain/NOVIX.Identity.Domain.csproj" />
+    <Project Path="Modules/Identity/NOVIX.Identity.Infrastructure/NOVIX.Identity.Infrastructure.csproj" />
+    <Project Path="Modules/Identity/NOVIX.Identity.Persistence/NOVIX.Identity.Persistence.csproj" />
+  </Folder>
+  <Folder Name="/Shared/">
+    <Project Path="Shared/NOVIX.Shared.Core/NOVIX.Shared.Core.csproj" />
+  </Folder>
+</Solution>
